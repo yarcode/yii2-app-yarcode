@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use yarcode\base\ActiveRecord;
+use common\components\ActiveRecord;
 use yarcode\base\behaviors\TimestampBehavior;
 use yarcode\base\traits\StatusTrait;
 use yii;

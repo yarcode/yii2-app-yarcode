@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use yarcode\base\ActiveRecord;
+use common\components\ActiveRecord;
 use yarcode\base\behaviors\TimestampBehavior;
 use yii;
 use yii\helpers\HtmlPurifier;

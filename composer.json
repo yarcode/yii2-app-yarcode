@@ -18,7 +18,8 @@
         "yarcode/yii2-base": "^0.3.1",
         "kartik-v/yii2-widget-alert": "^1.1",
         "kartik-v/yii2-widget-growl": "^1.1",
-        "yarcode/yii2-fa": "^1.0"
+        "yarcode/yii2-fa": "^1.0",
+        "dmstr/yii2-adminlte-asset": "2.*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

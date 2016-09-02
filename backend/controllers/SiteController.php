@@ -2,13 +2,7 @@
 namespace backend\controllers;
 
 use backend\components\Controller;
-use backend\models\CreateCampaignForm;
-use backend\models\EmailAddressSearch;
-use common\models\EmailAddress;
-use common\models\EmailAddressImport;
-use common\models\EspAccount;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use backend\models\LoginForm;
@@ -60,14 +54,21 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
-        return $this->render('index', [
-        ]);
+        return $this->render('index', []);
     }
 
+    /**
+     * @return string|\yii\web\Response
+     */
     public function actionLogin()
     {
+        $this->layout = 'main-login';
+
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -82,6 +83,9 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * @return \yii\web\Response
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();

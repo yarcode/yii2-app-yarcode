@@ -11,7 +11,6 @@ $this->title = 'Password Change';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="password-change">
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to change password:</p>
 

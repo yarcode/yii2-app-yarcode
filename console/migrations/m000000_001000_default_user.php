@@ -10,21 +10,21 @@ class m000000_001000_default_user extends Migration
         $now = new \yii\db\Expression('NOW()');
         $this->insert('{{%user_account}}', [
             'name' => 'root',
-            'createdAt' => $now,
-            'updatedAt' => $now,
+            'created_at' => $now,
+            'updated_at' => $now,
             'status' => 1,
-            'passwordHash' => Yii::$app->security->generatePasswordHash('root'),
-            'authKey' => \Yii::$app->security->generateRandomString(),
+            'password_hash' => Yii::$app->security->generatePasswordHash('root'),
+            'auth_key' => \Yii::$app->security->generateRandomString(),
             'email' => 'root@example.org',
-            'isEmailConfirmed' => 1,
+            'is_email_confirmed' => 1,
         ]);
         
         $userId = Yii::$app->db->lastInsertID;
 
         $this->insert('{{%user_profile}}', [
-            'ownerId' => $userId,
-            'firstName' => 'Admin',
-            'lastName' => 'Super',
+            'owner_id' => $userId,
+            'first_name' => 'Admin',
+            'last_name' => 'Super',
         ]);
         
         /** @var \yii\console\Controller $controller */

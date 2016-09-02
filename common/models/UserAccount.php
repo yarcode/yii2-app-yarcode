@@ -12,18 +12,18 @@ use yii\web\IdentityInterface;
  * This is the model class for table "{{%user_account}}".
  *
  * @property integer $id
- * @property string $createdAt
- * @property string $updatedAt
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $status
  * @property string $name
- * @property string $passwordHash
- * @property string $authKey
+ * @property string $password_hash
+ * @property string $auth_key
+ * @property string $password_reset_token
  * @property string $email
- * @property integer $isEmailConfirmed
- * @property string $lastLoginIp
- * @property string $lastLoginAt
- * @property string $timeZone
- * @property string $passwordResetToken
+ * @property integer $is_email_confirmed
+ * @property string $last_login_ip
+ * @property string $last_login_at
+ * @property string $time_zone
  *
  * @property UserProfile $profile
  *
@@ -75,7 +75,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
         }
 
         return static::findOne([
-            'passwordResetToken' => $token,
+            'password_reset_token' => $token,
             'status' => self::STATUS_ACTIVE,
         ]);
     }
@@ -123,8 +123,8 @@ class UserAccount extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'email', 'isEmailConfirmed'], 'required'],
-            ['isEmailConfirmed', 'boolean'],
+            [['name', 'email', 'is_email_confirmed'], 'required'],
+            ['is_email_confirmed', 'boolean'],
             ['email', 'email'],
             [['name', 'email'], 'unique'],
         ];
@@ -136,18 +136,19 @@ class UserAccount extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'createdAt' => Yii::t('app', 'Created At'),
-            'updatedAt' => Yii::t('app', 'Updated At'),
-            'status' => Yii::t('app', 'Status'),
-            'name' => Yii::t('app', 'Name'),
-            'passwordHash' => Yii::t('app', 'Password Hash'),
-            'authKey' => Yii::t('app', 'Auth Key'),
-            'email' => Yii::t('app', 'Email'),
-            'isEmailConfirmed' => Yii::t('app', 'Is Email Confirmed'),
-            'lastLoginIp' => Yii::t('app', 'Last Login Ip'),
-            'lastLoginAt' => Yii::t('app', 'Last Login At'),
-            'timeZone' => Yii::t('app', 'Time Zone'),
+            'id' => 'ID',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'status' => 'Status',
+            'name' => 'Name',
+            'password_hash' => 'Password Hash',
+            'auth_key' => 'Auth Key',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'is_email_confirmed' => 'Is Email Confirmed',
+            'last_login_ip' => 'Last Login Ip',
+            'last_login_at' => 'Last Login At',
+            'time_zone' => 'Time Zone',
         ];
     }
 
@@ -156,7 +157,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function getProfile()
     {
-        return $this->hasOne(UserProfile::className(), ['ownerId' => 'id']);
+        return $this->hasOne(UserProfile::className(), ['owner_id' => 'id']);
     }
 
     /**
@@ -180,7 +181,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->getAttribute('authKey');
+        return $this->getAttribute('auth_key');
     }
 
     /**
@@ -189,7 +190,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return \Yii::$app->security->validatePassword($password, $this->passwordHash);
+        return \Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     /**
@@ -198,11 +199,11 @@ class UserAccount extends ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if ($insert) {
-            $this->authKey = \Yii::$app->security->generateRandomString();
+            $this->auth_key = \Yii::$app->security->generateRandomString();
         }
 
         if (isset($this->password)) {
-            $this->passwordHash = \Yii::$app->security->generatePasswordHash($this->password);
+            $this->password_hash = \Yii::$app->security->generatePasswordHash($this->password);
         }
 
         return parent::beforeSave($insert);
@@ -215,7 +216,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
     {
         if ($insert) {
             $profile = new UserProfile();
-            $profile->ownerId = $this->id;
+            $profile->owner_id = $this->id;
             $profile->tryInsert(false);
         }
 
@@ -237,7 +238,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->passwordResetToken = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     /**
@@ -245,7 +246,7 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function removePasswordResetToken()
     {
-        $this->passwordResetToken = null;
+        $this->password_reset_token = null;
     }
 
     /**
@@ -255,6 +256,6 @@ class UserAccount extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->passwordHash = Yii::$app->security->generatePasswordHash($password);
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 }

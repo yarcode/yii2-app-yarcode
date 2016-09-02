@@ -11,9 +11,9 @@ use yii\helpers\HtmlPurifier;
  * This is the model class for table "{{%user_profile}}".
  *
  * @property integer $id
- * @property integer $ownerId
- * @property string $firstName
- * @property string $lastName
+ * @property integer $owner_id
+ * @property string $first_name
+ * @property string $last_name
  *
  * @property UserAccount $owner
  *
@@ -47,8 +47,8 @@ class UserProfile extends ActiveRecord
         return [
             [
                 [
-                    'firstName',
-                    'lastName',
+                    'first_name',
+                    'last_name',
                 ],
                 'filter',
                 'filter' => 'trim'
@@ -56,16 +56,16 @@ class UserProfile extends ActiveRecord
 
             [
                 [
-                    'firstName',
-                    'lastName',
+                    'first_name',
+                    'last_name',
                 ],
                 'filter',
                 'filter' => [$p, 'process']
             ],
             [
                 [
-                    'firstName',
-                    'lastName',
+                    'first_name',
+                    'last_name',
                 ],
                 'required'
             ],
@@ -95,7 +95,7 @@ class UserProfile extends ActiveRecord
      */
     public function getOwner()
     {
-        return $this->hasOne(UserAccount::className(), ['id' => 'ownerId']);
+        return $this->hasOne(UserAccount::className(), ['id' => 'owner_id']);
     }
 
     /**
@@ -103,6 +103,6 @@ class UserProfile extends ActiveRecord
      */
     public function getFullName()
     {
-        return implode(' ', [$this->lastName, $this->firstName]);
+        return implode(' ', [$this->last_name, $this->first_name]);
     }
 }

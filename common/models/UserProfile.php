@@ -78,7 +78,11 @@ class UserProfile extends ActiveRecord
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['ts'] = TimestampBehavior::className();
+        $behaviors['ts'] = [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'created_at',
+            'updatedAtAttribute' => 'updated_at',
+        ];
         return $behaviors;
     }
 

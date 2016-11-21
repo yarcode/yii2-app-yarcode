@@ -36,6 +36,10 @@ class m000000_001001_roles extends Migration
             'pattern' => '/^\d+$/',
         ]);
 
+        if (empty($userId)) {
+            $userId = 1;
+        }
+
         $auth->assign($admin, $userId);
     }
 

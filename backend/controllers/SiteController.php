@@ -1,12 +1,12 @@
 <?php
 namespace backend\controllers;
 
-use backend\components\Controller;
 use Yii;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use backend\models\LoginForm;
-use yii\filters\VerbFilter;
+use backend\components\Controller;
 
 /**
  * Site controller
@@ -55,21 +55,25 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
      * @return string
      */
     public function actionIndex()
     {
-        return $this->render('index', []);
+        return $this->render('index');
     }
 
     /**
-     * @return string|\yii\web\Response
+     * Login action.
+     *
+     * @return string
      */
     public function actionLogin()
     {
         $this->layout = 'main-login';
 
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
@@ -84,7 +88,9 @@ class SiteController extends Controller
     }
 
     /**
-     * @return \yii\web\Response
+     * Logout action.
+     *
+     * @return string
      */
     public function actionLogout()
     {

@@ -12,7 +12,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
+    <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -44,4 +44,3 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 </body>
 </html>
 <?php $this->endPage() ?>
-

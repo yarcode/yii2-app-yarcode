@@ -1,9 +1,9 @@
 <?php
 namespace frontend\models;
 
-use common\models\UserAccount;
-use yii;
+use Yii;
 use yii\base\Model;
+use common\models\UserAccount;
 
 /**
  * Password reset request form
@@ -18,13 +18,13 @@ class PasswordResetRequestForm extends Model
     public function rules()
     {
         return [
-            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\UserAccount',
                 'filter' => ['status' => UserAccount::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'message' => 'There is no user with this email address.'
             ],
         ];
     }
@@ -32,7 +32,7 @@ class PasswordResetRequestForm extends Model
     /**
      * Sends an email with a link, for resetting the password.
      *
-     * @return boolean whether the email was send
+     * @return bool whether the email was send
      */
     public function sendEmail()
     {
@@ -46,10 +46,10 @@ class PasswordResetRequestForm extends Model
             return false;
         }
         
-        if (!UserAccount::isPasswordResetTokenValid($user->passwordResetToken)) {
+        if (!UserAccount::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
         }
-        
+
         if (!$user->save()) {
             return false;
         }
@@ -60,9 +60,9 @@ class PasswordResetRequestForm extends Model
                 ['html' => 'password-reset-token-html', 'text' => 'password-reset-token-text'],
                 ['user' => $user]
             )
-            ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject('Password reset for ' . \Yii::$app->name)
+            ->setSubject('Password reset for ' . Yii::$app->name)
             ->send();
     }
 }

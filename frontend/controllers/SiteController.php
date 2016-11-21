@@ -1,17 +1,17 @@
 <?php
 namespace frontend\controllers;
 
-use yii;
-use frontend\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
+use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use frontend\models\LoginForm;
+use frontend\models\PasswordResetRequestForm;
+use frontend\models\ResetPasswordForm;
+use frontend\models\SignupForm;
 
 /**
  * Site controller
@@ -77,7 +77,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
@@ -117,7 +117,7 @@ class SiteController extends Controller
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
             }
         }
 
@@ -142,7 +142,7 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', 'New password saved.');
 
             return $this->goHome();
         }

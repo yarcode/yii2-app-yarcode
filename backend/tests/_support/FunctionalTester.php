@@ -19,7 +19,14 @@ namespace backend\tests;
 class FunctionalTester extends \Codeception\Actor
 {
     use _generated\FunctionalTesterActions;
-   /**
-    * Define custom actions here
-    */
+
+    public function seeValidationError($message)
+    {
+        $this->see($message, '.help-block');
+    }
+
+    public function dontSeeValidationError($message)
+    {
+        $this->dontSee($message, '.help-block');
+    }
 }

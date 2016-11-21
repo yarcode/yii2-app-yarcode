@@ -227,7 +227,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->profile->fullName?></span>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->profile->fullName ?></span>
                     </a>
                     <ul class="dropdown-menu">
 
@@ -236,7 +236,7 @@ use yii\helpers\Html;
                                  alt="User Image"/>
 
                             <p>
-                                <?= Yii::$app->user->identity->profile->fullName?> - Web Developer
+                                <?= Yii::$app->user->identity->profile->fullName ?> - Web Developer
                                 <small>Member since <?= date('M. Y')?></small>
                             </p>
                         </li>

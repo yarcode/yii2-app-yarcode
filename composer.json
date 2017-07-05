@@ -19,7 +19,8 @@
         "yarcode/yii2-fa": "^1.0",
         "kartik-v/yii2-widget-alert": "^1.1",
         "kartik-v/yii2-widget-growl": "^1.1",
-        "dmstr/yii2-adminlte-asset": "2.*"
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "vlucas/phpdotenv": "^2.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

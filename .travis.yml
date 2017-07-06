@@ -9,6 +9,9 @@ php:
 # faster builds on new travis setup not using sudo
 sudo: false
 
+env:
+  - DB_USERNAME=travis
+
 # cache vendor dirs
 cache:
   directories:
@@ -16,11 +19,10 @@ cache:
 
 install:
   - travis_retry composer self-update && composer --version
-  - travis_retry composer update --dev --prefer-dist --no-interaction
+  - travis_retry composer install --dev --prefer-dist --no-interaction
 # setup application:
   - |
     ./init --env=Development
-    sed -i s/root/travis/ common/config/main-local.php
     sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" frontend/config/main.php
     sed -i "s/'cookieValidationKey' => ''/'cookieValidationKey' => 'testkey'/" backend/config/main.php
 

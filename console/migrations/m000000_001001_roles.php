@@ -37,7 +37,7 @@ class m000000_001001_roles extends Migration
         ]);
 
         if (empty($userId)) {
-            $userId = getenv('YC_DEFAULT_USER_ID') ?: 1;
+            $userId = getenv('APP_DEFAULT_USER_ID') ?: 1;
         }
 
         $auth->assign($admin, $userId);

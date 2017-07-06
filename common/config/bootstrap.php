@@ -6,9 +6,12 @@ Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 
 Yii::$container->setSingleton(\Dotenv\Dotenv::class, function() {
     $env = new Dotenv\Dotenv(dirname(dirname(__DIR__)));
+    $env->load();
     $env->required('YII_DEBUG');
     $env->required('YII_ENV');
-    $env->load();
+    $env->required('DB_DSN');
+    $env->required('DB_USERNAME');
+    $env->required('DB_PASSWORD');
     return $env;
 });
 

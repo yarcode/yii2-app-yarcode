@@ -15,6 +15,13 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => getenv('DB_DSN'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'charset' => 'utf8',
+        ],
         'kernel' => [
             'class' => \common\kernel\Kernel::class,
             'plugins' => [],

@@ -15,7 +15,7 @@
         "yiisoft/yii2": "~2.0.12",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "yarcode/yii2-base": "^0.3.1",
+        "yarcode/yii2-tools-yarcode": "^1",
         "yarcode/yii2-fa": "^1.0",
         "kartik-v/yii2-widget-alert": "^1.1",
         "kartik-v/yii2-widget-growl": "^1.1",

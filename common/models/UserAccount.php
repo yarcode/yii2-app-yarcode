@@ -3,8 +3,8 @@
 namespace common\models;
 
 use common\components\ActiveRecord;
-use yarcode\base\behaviors\TimestampBehavior;
-use yarcode\base\traits\StatusTrait;
+use YarCode\Yii2\Behaviors\TimestampBehavior;
+use YarCode\Yii2\Traits\StatusLabelTrait;
 use yii;
 use yii\web\IdentityInterface;
 
@@ -31,7 +31,7 @@ use yii\web\IdentityInterface;
  */
 class UserAccount extends ActiveRecord implements IdentityInterface
 {
-    use StatusTrait;
+    use StatusLabelTrait;
 
     const STATUS_NEW = 0;
     const STATUS_ACTIVE = 1;

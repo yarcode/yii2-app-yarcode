@@ -3,7 +3,7 @@
 namespace common\models;
 
 use common\components\ActiveRecord;
-use yarcode\base\behaviors\TimestampBehavior;
+use YarCode\Yii2\Behaviors\TimestampBehavior;
 use yii;
 use yii\helpers\HtmlPurifier;
 
@@ -78,11 +78,7 @@ class UserProfile extends ActiveRecord
     public function behaviors()
     {
         $behaviors = parent::behaviors();
-        $behaviors['ts'] = [
-            'class' => TimestampBehavior::className(),
-            'createdAtAttribute' => 'created_at',
-            'updatedAtAttribute' => 'updated_at',
-        ];
+        $behaviors['ts'] = TimestampBehavior::class;
         return $behaviors;
     }
 

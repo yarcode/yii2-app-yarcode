@@ -7,8 +7,11 @@ class m000000_001000_default_user extends Migration
 {
     public function safeUp()
     {
+        $userId = getenv('APP_DEFAULT_USER_ID') ?: 1;
+
         $now = new \yii\db\Expression('NOW()');
         $this->insert('{{%user_account}}', [
+            'id' => $userId,
             'name' => 'root',
             'created_at' => $now,
             'updated_at' => $now,
@@ -16,21 +19,14 @@ class m000000_001000_default_user extends Migration
             'password_hash' => Yii::$app->security->generatePasswordHash('root'),
             'auth_key' => \Yii::$app->security->generateRandomString(),
             'email' => 'root@example.org',
-            'is_email_confirmed' => 1,
+            'is_email_confirmed' => true,
         ]);
-        
-        $userId = Yii::$app->db->lastInsertID;
 
         $this->insert('{{%user_profile}}', [
             'owner_id' => $userId,
             'first_name' => 'Admin',
             'last_name' => 'Super',
         ]);
-        
-        /** @var \yii\console\Controller $controller */
-        $controller = Yii::$app->controller;
-        
-        $controller->confirm("Default user id: $userId. Please write it down and enter 'yes'");
     }
 
     public function safeDown()

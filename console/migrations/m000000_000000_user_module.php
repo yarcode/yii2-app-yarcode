@@ -5,7 +5,7 @@ use yii\db\Migration;
 
 class m000000_000000_user_module extends Migration
 {
-    public function up()
+    public function safeUp()
     {
         $options = $this->db->driverName == 'mysql' ? 'ENGINE=InnoDB' : null;
 
@@ -14,12 +14,12 @@ class m000000_000000_user_module extends Migration
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime(),
             'status' => $this->integer()->notNull()->defaultValue(0),
-            'name' => $this->string()->notNull(),
+            'name' => $this->string()->notNull()->unique(),
             'password_hash' => $this->string()->notNull(),
             'auth_key' => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
-            'email' => $this->string()->notNull(),
-            'is_email_confirmed' => $this->boolean()->notNull()->defaultValue(0),
+            'email' => $this->string()->notNull()->unique(),
+            'is_email_confirmed' => $this->boolean()->notNull()->defaultValue(false),
             'last_login_ip' => $this->string(),
             'last_login_at' => $this->dateTime(),
             'time_zone' => $this->string()->defaultValue('UTC'),
@@ -36,7 +36,7 @@ class m000000_000000_user_module extends Migration
             , '{{%user_account}}', 'id', 'CASCADE', 'CASCADE');
     }
 
-    public function down()
+    public function safeDown()
     {
         $this->dropForeignKey('FK_user_profile_owner_id', '{{%user_profile}}');
         $this->dropTable('{{%user_account}}');

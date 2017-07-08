@@ -30,7 +30,7 @@ class m000000_000000_rbac_init extends \yii\db\Migration
         return $authManager;
     }
 
-    public function up()
+    public function safeUp()
     {
         $authManager = $this->getAuthManager();
 
@@ -77,7 +77,7 @@ class m000000_000000_rbac_init extends \yii\db\Migration
         ], $tableOptions);
     }
 
-    public function down()
+    public function safeDown()
     {
         $authManager = $this->getAuthManager();
 

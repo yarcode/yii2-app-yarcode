@@ -18,7 +18,7 @@ class m000000_001001_roles extends Migration
         return $authManager;
     }
 
-    public function up()
+    public function safeUp()
     {
         $auth = $this->getAuthManager();
 
@@ -29,21 +29,11 @@ class m000000_001001_roles extends Migration
         $auth->add($admin);
         $auth->addChild($admin, $user);
 
-        /** @var \yii\console\Controller $controller */
-        $controller = Yii::$app->controller;
-
-        $userId = $controller->prompt('Please enter default user id:', [
-            'pattern' => '/^\d+$/',
-        ]);
-
-        if (empty($userId)) {
-            $userId = getenv('APP_DEFAULT_USER_ID') ?: 1;
-        }
-
+        $userId = getenv('APP_DEFAULT_USER_ID') ?: 1;
         $auth->assign($admin, $userId);
     }
 
-    public function down()
+    public function safeDown()
     {
         $auth = $this->getAuthManager();
         $auth->removeAllRoles();

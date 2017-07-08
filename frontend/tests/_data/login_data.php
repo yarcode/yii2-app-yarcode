@@ -19,7 +19,7 @@ return [
         'password_reset_token' => 'RkD_Jw0_8HEedzLk7MM-ZKEFfYR7VbMr_1392559490',
         'created_at' => '2016-11-18 20:49:13',
         'updated_at' => '2016-11-18 20:49:13',
-        'email' => 'sfriesen@jenkins.info',
+        'email' => 'sfriesen-inactive@jenkins.info',
         'status' => 0 // 0 - inactive
     ],
 ];

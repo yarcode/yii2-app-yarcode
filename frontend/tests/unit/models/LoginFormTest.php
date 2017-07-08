@@ -2,9 +2,9 @@
 
 namespace frontend\tests\unit\models;
 
-use Yii;
+use common\fixtures\UserAccountFixture;
 use frontend\models\LoginForm;
-use frontend\fixtures\UserAccount as UserAccountFixture;
+use Yii;
 
 /**
  * Login form test
@@ -21,7 +21,7 @@ class LoginFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'userAccount' => [
-                'class' => UserAccountFixture::className(),
+                'class' => UserAccountFixture::class,
                 'dataFile' => codecept_data_dir() . 'login_data.php'
             ]
         ]);

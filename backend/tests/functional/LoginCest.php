@@ -3,8 +3,8 @@
 namespace backend\tests\functional;
 
 use backend\tests\FunctionalTester;
-use backend\fixtures\UserAccount as UserAccountFixture;
-use backend\fixtures\UserProfile as UserProfileFixture;
+use common\fixtures\UserAccountFixture;
+use common\fixtures\UserProfileFixture;
 
 /**
  * Class LoginCest
@@ -14,20 +14,24 @@ class LoginCest
     function _before(FunctionalTester $I)
     {
         $I->haveFixtures([
-
             'userAccount' => [
-                'class' => UserAccountFixture::className(),
+                'class' => UserAccountFixture::class,
                 'dataFile' => codecept_data_dir() . 'user_account.php'
             ],
-
             'userProfile' => [
-                'class' => UserProfileFixture::className(),
+                'class' => UserProfileFixture::class,
                 'dataFile' => codecept_data_dir() . 'user_profile.php'
-            ]
-
+            ],
         ]);
 
         $I->amOnRoute('site/login');
+    }
+
+    public function checkEmpty(FunctionalTester $I)
+    {
+        $I->submitForm('#login-form', $this->formParams('', ''));
+        $I->seeValidationError('Account Name cannot be blank.');
+        $I->seeValidationError('Password cannot be blank.');
     }
 
     protected function formParams($login, $password)
@@ -36,13 +40,6 @@ class LoginCest
             'LoginForm[accountName]' => $login,
             'LoginForm[password]' => $password,
         ];
-    }
-
-    public function checkEmpty(FunctionalTester $I)
-    {
-        $I->submitForm('#login-form', $this->formParams('', ''));
-        $I->seeValidationError('Account Name cannot be blank.');
-        $I->seeValidationError('Password cannot be blank.');
     }
 
     public function checkWrongPassword(FunctionalTester $I)

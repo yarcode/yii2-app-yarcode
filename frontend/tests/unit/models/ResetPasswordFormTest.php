@@ -2,7 +2,7 @@
 
 namespace frontend\tests\unit\models;
 
-use frontend\fixtures\UserAccount as UserAccountFixture;
+use common\fixtures\UserAccountFixture;
 use frontend\models\ResetPasswordForm;
 
 class ResetPasswordFormTest extends \Codeception\Test\Unit
@@ -17,7 +17,7 @@ class ResetPasswordFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'userAccount' => [
-                'class' => UserAccountFixture::className(),
+                'class' => UserAccountFixture::class,
                 'dataFile' => codecept_data_dir() . 'user_account.php'
             ]
         ]);
@@ -25,11 +25,11 @@ class ResetPasswordFormTest extends \Codeception\Test\Unit
 
     public function testResetWrongToken()
     {
-        $this->tester->expectException('yii\base\InvalidParamException', function() {
+        $this->tester->expectException('yii\base\InvalidParamException', function () {
             new ResetPasswordForm('');
         });
 
-        $this->tester->expectException('yii\base\InvalidParamException', function() {
+        $this->tester->expectException('yii\base\InvalidParamException', function () {
             new ResetPasswordForm('notexistingtoken_1391882543');
         });
     }

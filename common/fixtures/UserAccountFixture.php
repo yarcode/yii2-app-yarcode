@@ -1,9 +1,9 @@
 <?php
-namespace backend\fixtures;
+namespace common\fixtures;
 
 use yii\test\ActiveFixture;
 
-class UserAccount extends ActiveFixture
+class UserAccountFixture extends ActiveFixture
 {
     public $modelClass = 'common\models\UserAccount';
 }

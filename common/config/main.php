@@ -23,7 +23,7 @@ return [
             'charset' => 'utf8',
         ],
         'kernel' => [
-            'class' => \common\kernel\Kernel::class,
+            'class' => YarCode\Yii2\Kernel\Kernel::class,
             'plugins' => [],
         ],
         'urlManager' => [

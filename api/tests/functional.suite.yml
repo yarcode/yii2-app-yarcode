@@ -2,6 +2,7 @@ class_name: FunctionalTester
 modules:
     enabled:
         - Yii2
+          configFile: 'config/test.php'
         - REST:
             #url: http://affstats.loc/api/web/index-test.php
             #depends: PhpBrowser

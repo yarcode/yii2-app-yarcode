@@ -49,5 +49,6 @@ return [
             'rules' => require(__DIR__ . '/routes/main.php'),
         ],
     ],
+
     'params' => $params,
 ];

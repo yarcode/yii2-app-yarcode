@@ -4,5 +4,6 @@ modules:
         - Filesystem
         - Yii2
         - REST:
-            url: api/web
             depends: Yii2
+            part: Json
+            url: api/web

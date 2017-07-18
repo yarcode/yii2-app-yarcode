@@ -1,6 +1,7 @@
 class_name: FunctionalTester
 modules:
     enabled:
+        - Filesystem
         - Yii2
         - REST:
             #url: http://affstats.loc/api/web/index-test.php

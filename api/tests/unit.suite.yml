@@ -1,6 +1,6 @@
 class_name: UnitTester
-bootstrap: false
 modules:
     enabled:
         - Yii2:
-            part: fixtures
+            part: [orm, email, fixtures]
+        - Asserts

@@ -35,7 +35,7 @@ return [
         ],
         'request' => [
             'class' => \common\components\Request::class,
-            'baseUrl' => '/rest',
+            'baseUrl' => '/api/web',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
                 'application/json; charset=UTF-8' => 'yii\web\JsonParser',

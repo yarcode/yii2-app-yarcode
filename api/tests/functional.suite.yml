@@ -1,0 +1,9 @@
+class_name: FunctionalTester
+modules:
+    enabled:
+        - Yii2
+        - REST:
+            #url: http://affstats.loc/api/web/index-test.php
+            #depends: PhpBrowser
+            url: /api/web
+            depends: Yii2

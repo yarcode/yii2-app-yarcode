@@ -13,16 +13,7 @@ $params = array_merge(
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => [
-        'log',
-        'negotiator' =>[
-            'class' => 'yii\filters\ContentNegotiator',
-            'formats' => [
-                'application/json' => \yii\web\Response::FORMAT_JSON,
-                'application/xml' => \yii\web\Response::FORMAT_XML,
-            ],
-        ],
-    ],
+    'bootstrap' => ['log',],
     'controllerNamespace' => 'api\controllers',
     'modules' => [
         'v1' => [

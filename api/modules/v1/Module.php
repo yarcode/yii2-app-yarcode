@@ -5,9 +5,6 @@
 
 namespace api\modules\v1;
 
-use yii\helpers\ArrayHelper;
-use yii\web\Response;
-
 /**
  * Class Module
  * @package api\modules\v1
@@ -22,7 +19,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        
+
     }
 }
 

@@ -3,7 +3,8 @@
  * @author Antonov Oleg <theorder83dev@gmail.com>
  */
 
-namespace api\tests\functional;
+namespace api\tests\functional\v1;
+
 use api\tests\FunctionalTester;
 
 /**
@@ -20,13 +21,22 @@ class ApiCest
         $I->seeResponseContainsJson(['success' => true]);
         $I->seeResponseContainsJson(['status' => 200]);
         $I->seeResponseContainsJson(['version' => '1.0']);
-
     }
 
-    public function testError404(FunctionalTester $I)
+    public function testError404MissingAction(FunctionalTester $I)
     {
-        $I->wantTo('get 404 Error');
+        $I->wantTo('get 404 Error (missing action)');
         $I->sendGET('/v1/undefined-action');
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseIsJson();
+        $I->seeResponseContainsJson(['success' => false]);
+        $I->seeResponseContainsJson(['status' => 404]);
+    }
+
+    public function testError404MissingModule(FunctionalTester $I)
+    {
+        $I->wantTo('get 404 Error (missing module)');
+        $I->sendGET('/undefended-module');
         $I->seeResponseCodeIs(404);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(['success' => false]);

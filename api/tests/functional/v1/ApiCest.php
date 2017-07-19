@@ -8,7 +8,8 @@ namespace api\tests\functional\v1;
 use api\tests\FunctionalTester;
 
 /**
- * Class LoginCest
+ * Class ApiCest
+ * @package api\tests\functional\v1
  */
 class ApiCest
 {
@@ -23,24 +24,13 @@ class ApiCest
         $I->seeResponseContainsJson(['version' => '1.0']);
     }
 
-    public function testError404MissingAction(FunctionalTester $I)
+    public function testError404(FunctionalTester $I)
     {
-        $I->wantTo('get 404 Error (missing action)');
+        $I->wantTo('get 404 Error');
         $I->sendGET('/v1/undefined-action');
         $I->seeResponseCodeIs(404);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson(['success' => false]);
         $I->seeResponseContainsJson(['status' => 404]);
     }
-
-    public function testError404MissingModule(FunctionalTester $I)
-    {
-        $I->wantTo('get 404 Error (missing module)');
-        $I->sendGET('/undefended-module');
-        $I->seeResponseCodeIs(404);
-        $I->seeResponseIsJson();
-        $I->seeResponseContainsJson(['success' => false]);
-        $I->seeResponseContainsJson(['status' => 404]);
-    }
-
 }

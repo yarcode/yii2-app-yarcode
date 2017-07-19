@@ -1,14 +1,21 @@
 <?php
+/**
+ * @author Antonov Oleg <theorder83dev@gmail.com>
+ */
+
 namespace api\components\actions;
 
-use yii;
-
+/**
+ * Class SimpleOptionsAction
+ * @package api\components\actions
+ */
 class SimpleOptionsAction extends \yii\base\Action
 {
     /**
      * @var array the HTTP verbs that are supported by the URL
      */
     public $options = [];
+
 
     public function init()
     {
@@ -23,10 +30,10 @@ class SimpleOptionsAction extends \yii\base\Action
      */
     public function run()
     {
-        if (Yii::$app->getRequest()->getMethod() !== 'OPTIONS') {
-            Yii::$app->getResponse()->setStatusCode(405);
+        if (\Yii::$app->getRequest()->getMethod() !== 'OPTIONS') {
+            \Yii::$app->getResponse()->setStatusCode(405);
         }
-        Yii::$app->getResponse()->getHeaders()->set('Allow', implode(', ', $this->options));
-        Yii::$app->getResponse()->getHeaders()->set('Access-Control-Allow-Methods', implode(', ', $this->options));
+        \Yii::$app->getResponse()->getHeaders()->set('Allow', implode(', ', $this->options));
+        \Yii::$app->getResponse()->getHeaders()->set('Access-Control-Allow-Methods', implode(', ', $this->options));
     }
 }

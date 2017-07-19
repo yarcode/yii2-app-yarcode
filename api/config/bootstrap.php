@@ -1,5 +1,4 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: olegy
+ * @author Antonov Oleg <theorder83dev@gmail.com>
  */

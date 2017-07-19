@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: olegy
+ * @author Antonov Oleg <theorder83dev@gmail.com>
  */
 
 namespace api\modules\v1\controllers;
@@ -9,6 +8,10 @@ namespace api\modules\v1\controllers;
 use api\components\actions\SimpleOptionsAction;
 use api\components\Controller;
 
+/**
+ * Class ApiController
+ * @package api\modules\v1\controllers
+ */
 class ApiController extends Controller
 {
     public $defaultAction = 'version';
@@ -26,6 +29,9 @@ class ApiController extends Controller
         ];
     }
 
+    /**
+     * @return array
+     */
     public function actionVersion()
     {
         return [

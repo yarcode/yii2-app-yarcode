@@ -6,4 +6,4 @@ modules:
         - REST:
             depends: Yii2
             part: Json
-            url: api/web
+            url:

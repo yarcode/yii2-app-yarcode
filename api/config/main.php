@@ -22,7 +22,7 @@ return [
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\UserAccount',
+            'identityClass' => \common\models\UserAccount::class,
             'enableAutoLogin' => true,
             'enableSession' => false,
             'loginUrl' => null,
@@ -34,11 +34,11 @@ return [
         ],
         'request' => [
             'class' => \common\components\Request::class,
-            'baseUrl' => '/api/web',
+            'baseUrl' => '/',
             'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-                'application/json; charset=UTF-8' => 'yii\web\JsonParser',
-                'application/x-www-form-urlencoded' => 'yii\web\JsonParser'
+                'application/json' => \yii\web\JsonParser::class,
+                'application/json; charset=UTF-8' => \yii\web\JsonParser::class,
+                'application/x-www-form-urlencoded' => \yii\web\JsonParser::class,
             ],
         ],
         'urlManager' => [

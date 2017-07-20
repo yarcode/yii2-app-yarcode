@@ -5,7 +5,7 @@ Yii::setAlias('@backend', dirname(dirname(__DIR__)) . '/backend');
 Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('@api', dirname(dirname(__DIR__)) . '/api');
 
-Yii::$container->setSingleton(\Dotenv\Dotenv::class, function() {
+Yii::$container->setSingleton(\Dotenv\Dotenv::class, function () {
     $env = new Dotenv\Dotenv(dirname(dirname(__DIR__)));
     $env->load();
     $env->required('YII_DEBUG');

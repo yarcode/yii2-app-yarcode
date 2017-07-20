@@ -19,7 +19,7 @@ use yii\helpers\Html;
 
             <ul class="nav navbar-nav">
 
-                <?php if(false):?>
+                <?php if (false):?>
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -241,7 +241,7 @@ use yii\helpers\Html;
                             </p>
                         </li>
 
-                        <?php if(false):?>
+                        <?php if (false):?>
                         <li class="user-body">
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>

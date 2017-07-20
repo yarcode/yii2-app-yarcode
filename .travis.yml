@@ -33,3 +33,4 @@ before_script:
 script:
   - composer validate --strict
   - vendor/bin/codecept run
+  - vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no

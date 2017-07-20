@@ -32,8 +32,7 @@ class m000000_000000_user_module extends Migration
             'last_name' => $this->string(),
         ], $options);
 
-        $this->addForeignKey('FK_user_profile_owner_id', '{{%user_profile}}', 'owner_id'
-            , '{{%user_account}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('FK_user_profile_owner_id', '{{%user_profile}}', 'owner_id', '{{%user_account}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function safeDown()

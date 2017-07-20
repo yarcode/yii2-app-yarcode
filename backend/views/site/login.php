@@ -45,8 +45,10 @@ $fieldOptions2 = [
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
             </div>
             <div class="col-xs-4">
-                <?= Html::submitButton('Sign in',
-                    ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton(
+                'Sign in',
+                    ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']
+            ) ?>
             </div>
         </div>
 

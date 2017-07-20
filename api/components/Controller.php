@@ -11,5 +11,4 @@ namespace api\components;
  */
 class Controller extends \yii\rest\Controller
 {
-    
 }

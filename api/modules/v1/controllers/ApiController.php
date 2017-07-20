@@ -38,5 +38,4 @@ class ApiController extends Controller
             'version' => $this->module->getVersion(),
         ];
     }
-
 }

@@ -13,7 +13,10 @@ $params = array_merge(
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log',],
+    'bootstrap' => [
+        'log',
+        'v1',
+    ],
     'controllerNamespace' => 'api\controllers',
     'modules' => [
         'v1' => [
@@ -45,7 +48,6 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
-            'rules' => require(__DIR__ . '/routes/main.php'),
         ],
         'response' => [
             'class' => yii\web\Response::class,

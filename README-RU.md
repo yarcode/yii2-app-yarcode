@@ -48,10 +48,12 @@ backend            приложение backend
     web/                 содержит содержит сценарий запуска и ресурсы
     codeception.yaml     конфигурация для codeception
 common              файлы общие для всего приложения
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
+    component/           содержит общие компоненты
+    config/              содержит общую конфигурацию приложения
+    fixtures/            содержит фикстуры
+    mail/                сожрержит представления для e-mail
+    models/              содержит модели, используемые во всем приложении
+    tests/               содержит общие тесты для приложения
 console             консольное приложение
     config/              содержит конфигурацию console
     controllers/         содержит классы Console контроллеров(команды)

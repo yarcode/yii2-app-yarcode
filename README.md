@@ -26,7 +26,7 @@ php yii migrate
 
 The template installation is now complete.
 
-Струркутра шаблона
+Template structure
 ------------------
     
 The root directory contains the following subdirectories and files:

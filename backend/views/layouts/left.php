@@ -27,13 +27,13 @@
         </form>
         <!-- /.search form -->
 
-        <?= \yii\widgets\Menu::widget(
+        <?= \dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Main Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Home', 'icon' => 'fa fa-home', 'url' => ['/site/index']],
-                    ['label' => 'Change Password', 'icon' => 'fa fa-lock', 'url' => ['/profile/change-password']],
+                    ['label' => 'Home', 'icon' => 'home', 'url' => ['/site/index']],
+                    ['label' => 'Change Password', 'icon' => 'lock', 'url' => ['/profile/change-password']],
                 ],
             ]
         ) ?>

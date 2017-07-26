@@ -22,7 +22,7 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>YarCode</b>App</a>
+        <a href="#"><?= Yii::$app->name ?></a>
     </div>
 
     <div class="login-box-body">
@@ -33,7 +33,7 @@ $fieldOptions2 = [
         <?= $form
             ->field($model, 'accountName', $fieldOptions1)
             ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+            ->textInput(['placeholder' => $model->getAttributeLabel('accountName')]) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)

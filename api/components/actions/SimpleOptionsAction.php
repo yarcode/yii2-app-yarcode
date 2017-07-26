@@ -16,7 +16,9 @@ class SimpleOptionsAction extends \yii\base\Action
      */
     public $options = [];
 
-
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();

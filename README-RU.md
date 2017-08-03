@@ -118,7 +118,7 @@ vendor\bin\codecept run functional -c api v1/ApiCest -f --debug
 
 ### Travis CI 
 
-Для автоматической сборки и тестирования приложения в шаблоне используется [Travis CI](https://docs.travis-ci.com/user/getting-started/), конфигурация находится в файле `.travis.yaml`. 
+Для автоматической сборки и тестирования приложения в шаблоне используется [Travis CI](https://docs.travis-ci.com/user/getting-started/), конфигурация находится в файле `.travis.yml`. 
 
 В конфигурационном файле помимо сборки и тестирования настроен [PHP Coding Standards Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer). 
 

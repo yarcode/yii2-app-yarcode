@@ -123,7 +123,7 @@ vendor\bin\codecept run functional -c api v1/ApiCest -f --debug
 
 ### Travis CI 
 
-To automatically build and test the application in a template, use [Travis CI](https://docs.travis-ci.com/user/getting-started/), конфигурация находится в файле `.travis.yaml`. 
+To automatically build and test the application in a template, use [Travis CI](https://docs.travis-ci.com/user/getting-started/). The configuration is located in the file `.travis.yml` in the project's root directory. 
 
 In the configuration file added [PHP Coding Standards Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer). 
 

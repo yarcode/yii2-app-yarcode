@@ -1,0 +1,8 @@
+version: '2'
+volumes:
+  postgres_data:
+    external:
+      name: yiidock_postgres_data
+  mysql_data:
+     external:
+       name: yiidock_mysql_data

@@ -66,6 +66,16 @@ services:
       - DB_USERNAME
       - DB_PASSWORD
 
+  nginx-api:
+    build:
+      context: ./nginx-api
+    depends_on:
+      - php-fpm
+    volumes_from:
+      - vol_app_source
+    ports:
+      - 8003:8003
+
   nginx-backend:
     build:
       context: ./nginx-backend
@@ -74,7 +84,7 @@ services:
     volumes_from:
       - vol_app_source
     ports:
-      - 8001:8001
+      - 8002:8002
 
   nginx-frontend:
     build:
@@ -84,7 +94,7 @@ services:
     volumes_from:
       - vol_app_source
     ports:
-      - 8002:8002
+      - 8001:8001
 
 volumes:
   postgres_data:

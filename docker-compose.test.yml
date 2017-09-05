@@ -1,0 +1,48 @@
+version: '2'
+services:
+  postgres_test:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "${TEST_DB_USERNAME}"
+      POSTGRES_PASSWORD: "${TEST_DB_USERNAME}"
+
+  vol_app_source:
+    image: tianon/true
+    volumes:
+      - ./:/app
+
+  codeception:
+    build:
+      context: ./yiidock/workspace
+      dockerfile: "Dockerfile-${PHP_VERSION}"
+    volumes_from:
+      - vol_app_source
+    depends_on:
+      - postgres_test
+    entrypoint: ["vendor/bin/codecept"]
+    working_dir: /app
+    environment:
+      DB_DSN: "${TEST_DB_DSN}"
+      DB_USERNAME: "${TEST_DB_USERNAME}"
+      DB_PASSWORD: "${TEST_DB_PASSWORD}"
+
+  yii_test:
+    build:
+      context: ./yiidock/workspace
+      dockerfile: "Dockerfile-${PHP_VERSION}"
+    volumes_from:
+      - vol_app_source
+    depends_on:
+      - postgres
+    entrypoint: ["php", "yii_test"]
+    environment:
+      DB_DSN: "${TEST_DB_DSN}"
+      DB_USERNAME: "${TEST_DB_USERNAME}"
+      DB_PASSWORD: "${TEST_DB_PASSWORD}"
+
+volumes:
+  postgres_data:
+    external:
+      name: test_postgres_data

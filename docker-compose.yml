@@ -6,27 +6,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: yiidock
-      POSTGRES_PASSWORD: yiidock
-
-  mysql:
-    build: ./mysql
-    volumes:
-      - mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: yiidock
-      MYSQL_USER: yiidock
-      MYSQL_PASSWORD: yiidock
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_USERNAME}"
 
   vol_app_source:
     image: tianon/true
     volumes:
-      - ../:/app
+      - ./:/app
 
   php-fpm:
     build:
-      context: ./php-fpm
+      context: ./yiidock/php-fpm
       dockerfile: "Dockerfile-${PHP_VERSION}"
     expose:
       - 9000
@@ -41,7 +31,7 @@ services:
 
   workspace:
     build:
-      context: ./workspace
+      context: ./yiidock/workspace
       dockerfile: "Dockerfile-${PHP_VERSION}"
     volumes_from:
       - vol_app_source
@@ -54,7 +44,7 @@ services:
 
   yii:
     build:
-      context: ./workspace
+      context: ./yiidock/workspace
       dockerfile: "Dockerfile-${PHP_VERSION}"
     volumes_from:
       - vol_app_source
@@ -65,10 +55,11 @@ services:
       - DB_DSN
       - DB_USERNAME
       - DB_PASSWORD
+    working_dir: /app
 
   nginx-api:
     build:
-      context: ./nginx-api
+      context: ./yiidock/nginx-api
     depends_on:
       - php-fpm
     volumes_from:
@@ -78,7 +69,7 @@ services:
 
   nginx-backend:
     build:
-      context: ./nginx-backend
+      context: ./yiidock/nginx-backend
     depends_on:
       - php-fpm
     volumes_from:
@@ -88,7 +79,7 @@ services:
 
   nginx-frontend:
     build:
-      context: ./nginx-frontend
+      context: ./yiidock/nginx-frontend
     depends_on:
       - php-fpm
     volumes_from:
@@ -98,6 +89,4 @@ services:
 
 volumes:
   postgres_data:
-    external: true
-  mysql_data:
     external: true

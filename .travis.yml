@@ -28,8 +28,8 @@ install:
 
 before_script:
   - mysql -e 'CREATE DATABASE yarcode_test;'
-  - php yii_test migrate --interactive=0
   - cp .env.travis .env
+  - php yii_test migrate --interactive=0
 
 script:
   - composer validate --strict

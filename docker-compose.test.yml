@@ -35,7 +35,7 @@ services:
     volumes_from:
       - vol_app_source
     depends_on:
-      - postgres
+      - postgres_test
     entrypoint: ["php", "yii_test"]
     environment:
       DB_DSN: "${TEST_DB_DSN}"

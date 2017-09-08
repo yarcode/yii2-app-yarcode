@@ -8,8 +8,6 @@ Yii::setAlias('@api', dirname(dirname(__DIR__)) . '/api');
 Yii::$container->setSingleton(\Dotenv\Dotenv::class, function () {
     $env = new Dotenv\Dotenv(dirname(dirname(__DIR__)));
     $env->load();
-    $env->required('YII_DEBUG');
-    $env->required('YII_ENV');
     $env->required('DB_DSN');
     $env->required('DB_USERNAME');
     $env->required('DB_PASSWORD');

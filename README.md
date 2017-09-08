@@ -28,34 +28,6 @@ The template installation is now complete.
 
 Quality Control
 ---------------
-
-### Testing
-Tests are in the test catalogs `{application}/tests`.
-They are developed with [Codeception PHP Testing Framework](http://codeception.com/). By default there are 2 test suites for each applications(`api`, `frontend`, `backend`): 
-
-- unit 
-- functional 
-
-For more information about testing Yii2 applications, [read here](http://codeception.com/docs/modules/Yii2) 
-
-You can run all the tests that are in the template
-``` 
-vendor\bin\codecept run 
-``` 
-It is possible to run only unit or only functional tests for the application, for example
-``` 
-vendor\bin\codecept run unit -c backend 
-vendor\bin\codecept run functional -c api 
-``` 
-Also you can run some specific test by specifying the path to it
-``` 
-vendor\bin\codecept run functional -c api v1/ApiCest 
-``` 
-For debugging, it can be convenient to run tests with the flags `-f` and` --debug`
-``` 
-vendor\bin\codecept run functional -c api v1/ApiCest -f --debug 
-``` 
-
 ### Travis CI 
 
 To automatically build and test the application in a template, use [Travis CI](https://docs.travis-ci.com/user/getting-started/). The configuration is located in the file `.travis.yml` in the project's root directory. 
@@ -110,21 +82,33 @@ Example, start only backend:
 docker-compose up -d nginx-backend 
 ```
 ### Test environment
+Tests are in the test catalogs `{application}/tests`.
+They are developed with [Codeception PHP Testing Framework](http://codeception.com/). By default there are 2 test suites for each applications(`api`, `frontend`, `backend`): 
+
+- unit 
+- functional 
+
+For more information about testing Yii2 applications, [read here](http://codeception.com/docs/modules/Yii2) 
+
 To run tests in a container can be used `docker-compose.test.yml` file.
 Follow these three simple steps:
-1. Create test volume
-    ```
-    docker volume create --name=test_postgres_data
-    ```
-2. Apply migration for test database
-    ```
-    docker-compose -f docker-compose.test.yml run --rm yii_test migrate 
-    ```
-3. Run tests
-    ```
-    docker-compose -f docker-compose.test.yml run --rm codeception run 
-    ```
-
+1. Create test volume:    ` docker volume create --name=test_postgres_data`
+2. Apply migration for test database: `docker-compose -f docker-compose.test.yml run --rm yii_test migrate  `
+3. Run all the tests that are in the template: `docker-compose -f docker-compose.test.yml run --rm codeception run `
+    
+It is possible to run only unit or only functional tests for the application, for example
+``` 
+docker-compose -f docker-compose.test.yml run --rm codeception run unit -c backend 
+docker-compose -f docker-compose.test.yml run --rm codeception run functional -c api 
+``` 
+Also you can run some specific test by specifying the path to it
+``` 
+docker-compose -f docker-compose.test.yml run --rm codeception run functional -c api v1/ApiCest 
+``` 
+For debugging, it can be convenient to run tests with the flags `-f` and` --debug`
+``` 
+docker-compose -f docker-compose.test.yml run --rm codeception run functional -c api v1/ApiCest -f --debug 
+``` 
 Template structure
 ------------------
 The root directory contains the following subdirectories and files:

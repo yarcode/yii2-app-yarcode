@@ -1,4 +1,4 @@
-#API Application
+# API Application
 
 API Application is part of the yii-app-yarcode template to quickly create a REST API. 
 

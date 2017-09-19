@@ -23,5 +23,5 @@ SECRET_KEY="super_seekret_key"
 
 Get variable in php
 ```
-$key = getenv('super_seekret_key');
+$key = getenv('SECRET_KEY');
 ```

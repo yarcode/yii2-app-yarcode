@@ -1,5 +1,7 @@
-Yii 2 YarCode Project Template 
-===============================
+Yii 2 YarCode Project Template
+==============================
+[![Build Status](https://travis-ci.org/yarcode/yii2-app-yarcode.svg?branch=master)](https://travis-ci.org/yarcode/yii2-app-yarcode) 
+
 Yii 2 YarCode Project - is a skeleton [Yii 2](http://www.yiiframework.com/) application.
 * [Differences](#differences-from-yii2-app-advanced)
 * [Requirements](#requirements)
@@ -12,19 +14,17 @@ Differences from yii2-app-advanced
 ----------------------------------
 In contrast to the  [yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced) this template out of the box has:
 * [Support for .env file](docs/DOTENV-FILE.md)
-* [REST API application](docs/API-APPLICATION.md)
+* [API application](docs/API-APPLICATION.md)
 * [Include yii2-tools-yarcode](https://github.com/yarcode/yii2-tools-yarcode)
 * [Set of docker containers](#vrutalization)
 * Integration with [Travis CI](https://travis-ci.org/)
 * Pre-installed [AdminLTE](https://adminlte.io/) theme for the backend application
 
-[![Build Status](https://travis-ci.org/yarcode/yii2-app-yarcode.svg?branch=master)](https://travis-ci.org/yarcode/yii2-app-yarcode) 
-
-Requirements 
+Requirements
 ------------
 The minimum requirement by this project template that your Web server supports PHP 7+.
 
-Installation 
+Installation
 ------------
 Install [composer](http://getcomposer.org]).
 
@@ -36,7 +36,14 @@ composer create-project --prefer-dist yarcode/yii2-app-yarcode yarcode
 php init 
 ```
 
-Change the settings in the `common/config/main-local.php` and apply migrations. Make sure that you are properly configured to connect to the database.
+Copy and configure .env file
+
+```
+cp .env.example .env
+```
+
+Configure `.env` and apply migrations. Make sure that you are properly configured to connect to the database.
+
 ``` 
 php yii migrate 
 ``` 
@@ -68,7 +75,7 @@ This template supports [Docker](https://www.docker.com/) technology
 
 ### Base usage
 Build your containers
-```bash
+```
 docker-compose build
 ```
 Create volume
@@ -175,6 +182,8 @@ frontend            frontend web application
     codeception.yaml     configuration file for Codeception
 tools/              contains helper for IDE       
 vendor/             contains dependent 3rd-party packages
+.env.example        dotenv file example
+.env.travis         dotenv file for Tavis CI
 .gitignore          contains a list of directories ignored by git version system. 
 .php_cs             configuration file for PHP Coding Standards Fixer
 .travis.yaml        configuration file for Travis CI 

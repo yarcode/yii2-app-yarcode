@@ -11,7 +11,7 @@ Storing configuration in the environment is one of the tenets of a twelve-factor
 
 [Learn more...](https://github.com/vlucas/phpdotenv)
 
-##Usage
+## Usage
 
 `.env` file is added to `.gitignore` so it is not checked-in the code.
 

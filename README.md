@@ -1,5 +1,22 @@
 Yii 2 YarCode Project Template 
-=============================== 
+===============================
+Yii 2 YarCode Project - is a skeleton [Yii 2](http://www.yiiframework.com/) application.
+* [Differences](#differences-from-yii2-app-advanced)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Quality Control](#quality-control)
+* [Vrutalization](#vrutalization)
+* [Template structure](#template-structure)
+
+Differences from yii2-app-advanced
+----------------------------------
+In contrast to the  [yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced) this template out of the box has:
+* [Support for .env file](docs/DOTENV-FILE.md)
+* [REST API application](docs/API-APPLICATION.md)
+* [Include yii2-tools-yarcode](https://github.com/yarcode/yii2-tools-yarcode)
+* [Set of docker containers](#vrutalization)
+* Integration with [Travis CI](https://travis-ci.org/)
+* Pre-installed [AdminLTE](https://adminlte.io/) theme for the backend application
 
 [![Build Status](https://travis-ci.org/yarcode/yii2-app-yarcode.svg?branch=master)](https://travis-ci.org/yarcode/yii2-app-yarcode) 
 
@@ -13,11 +30,11 @@ Install [composer](http://getcomposer.org]).
 
 You can then install this project template using the following command:
 
-``` 
+```
 composer create-project --prefer-dist yarcode/yii2-app-yarcode yarcode 
 сd yarcode 
 php init 
-``` 
+```
 
 Change the settings in the `common/config/main-local.php` and apply migrations. Make sure that you are properly configured to connect to the database.
 ``` 

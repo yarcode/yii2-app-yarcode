@@ -36,7 +36,7 @@ composer create-project --prefer-dist yarcode/yii2-app-yarcode yarcode
 php init 
 ```
 
-Copy and configure .env file
+Copy .env file
 
 ```
 cp .env.example .env

@@ -1,0 +1,92 @@
+version: '2'
+services:
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_USERNAME}"
+
+  vol_app_source:
+    image: tianon/true
+    volumes:
+      - ./:/app
+
+  php-fpm:
+    build:
+      context: ./yiidock/php-fpm
+      dockerfile: "Dockerfile-${PHP_VERSION}"
+    expose:
+      - 9000
+    volumes_from:
+      - vol_app_source
+    depends_on:
+      - postgres
+    environment:
+      - DB_DSN
+      - DB_USERNAME
+      - DB_PASSWORD
+
+  workspace:
+    build:
+      context: ./yiidock/workspace
+      dockerfile: "Dockerfile-${PHP_VERSION}"
+    volumes_from:
+      - vol_app_source
+    depends_on:
+      - postgres
+    environment:
+      - DB_DSN
+      - DB_USERNAME
+      - DB_PASSWORD
+
+  yii:
+    build:
+      context: ./yiidock/workspace
+      dockerfile: "Dockerfile-${PHP_VERSION}"
+    volumes_from:
+      - vol_app_source
+    depends_on:
+      - postgres
+    entrypoint: ["php", "yii"]
+    environment:
+      - DB_DSN
+      - DB_USERNAME
+      - DB_PASSWORD
+    working_dir: /app
+
+  nginx-api:
+    build:
+      context: ./yiidock/nginx-api
+    depends_on:
+      - php-fpm
+    volumes_from:
+      - vol_app_source
+    ports:
+      - 8003:8003
+
+  nginx-backend:
+    build:
+      context: ./yiidock/nginx-backend
+    depends_on:
+      - php-fpm
+    volumes_from:
+      - vol_app_source
+    ports:
+      - 8002:8002
+
+  nginx-frontend:
+    build:
+      context: ./yiidock/nginx-frontend
+    depends_on:
+      - php-fpm
+    volumes_from:
+      - vol_app_source
+    ports:
+      - 8001:8001
+
+volumes:
+  postgres_data:
+    external: true

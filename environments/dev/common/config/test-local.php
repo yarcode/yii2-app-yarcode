@@ -6,8 +6,12 @@ return yii\helpers\ArrayHelper::merge(
     [
         'components' => [
             'db' => [
-                'dsn' => 'mysql:host=localhost;dbname=yarcode_test',
-            ]
+                'class' => 'yii\db\Connection',
+                'dsn' => getenv('TEST_DB_DSN'),
+                'username' => getenv('TEST_DB_USERNAME'),
+                'password' => getenv('TEST_DB_PASSWORD'),
+                'charset' => 'utf8',
+            ],
         ],
     ]
 );

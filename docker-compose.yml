@@ -7,7 +7,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: "${DB_USERNAME}"
-      POSTGRES_PASSWORD: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
 
   vol_app_source:
     image: tianon/true

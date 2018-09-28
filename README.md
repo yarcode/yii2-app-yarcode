@@ -69,11 +69,16 @@ Execute the command to verify the code for compliance with the [PSR-2](http://ww
 vendor/bin/php-cs-fixer fix -v --dry-run 
 ```
 
-## Vrutalization
+## Virtualization
 
 This template supports [Docker](https://www.docker.com/) technology
 
 ### Base usage
+
+Declare default environment variables in file
+```
+cp .env.example .env
+```
 Build your containers
 ```
 docker-compose build
